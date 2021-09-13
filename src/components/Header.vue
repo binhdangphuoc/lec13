@@ -32,6 +32,7 @@
           </router-link>
         </li>
       </ul>
+
       <ul class="nav navbar-nav pull-xs-right" v-else>
         <li class="nav-item">
           <!-- Add "active" class when you're on that page" -->
@@ -43,6 +44,16 @@
             Home
           </router-link>
         </li>
+        <li class="nav-item">
+          <!-- Add "active" class when you're on that page" -->
+          <a href="#"
+            class="nav-link"
+            active-class="active"
+            @click = "logout()"
+          >
+            Logout
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -50,6 +61,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { LOGOUT } from '../store/actions.type';
 export default {
   name: "Header",
   computed: {
@@ -57,5 +69,14 @@ export default {
       isAuthenticated: (state) => state.auth.isAuthenticated,
     }),
   },
+  methods: {
+    async logout() {
+      console.log("logout")
+      const isSuccess = await this.$store.dispatch(LOGOUT)
+      if(isSuccess) {
+        this.$router.push({ name: "home" })
+      }
+    }
+  }
 };
 </script>

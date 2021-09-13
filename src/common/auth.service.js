@@ -13,6 +13,7 @@ const AuthService = {
   updateUser(user) {
     return ApiService.put("user", user);
   },
+  
 };
 
 export default AuthService;

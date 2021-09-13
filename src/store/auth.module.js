@@ -2,7 +2,7 @@ import AuthService from "../common/auth.service";
 import ApiService from "../common/api.service";
 import { saveToken, getToken, removeToken } from "../common/jwt.service";
 import { CLEAR_AUTH, SET_ERRORS, SET_USER } from "./mutations.type";
-import { CHECK_AUTHENTICATE, LOGIN, REGISTER } from "./actions.type";
+import { CHECK_AUTHENTICATE, LOGIN, REGISTER, LOGOUT } from "./actions.type";
 
 const state = {
   isAuthenticated: false,
@@ -61,6 +61,9 @@ const actions = {
       commit(CLEAR_AUTH);
     }
   },
+  async [LOGOUT] ({ commit }) {
+    commit(CLEAR_AUTH)
+  }
 };
 
 const mutations = {
